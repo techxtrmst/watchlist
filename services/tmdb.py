@@ -31,14 +31,25 @@ def get_upcoming_movies() -> List[Dict[str, Any]]:
 
 
 def search_movies(
-    genre: str = None, year: int = None, language: str = "en"
+    query: str = None, genre: str = None, year: int = None, language: str = "en"
 ) -> List[Dict[str, Any]]:
-    params = {"language": language}
-    if year:
-        params["year"] = year
-    data = _get("discover/movie", params)
+    if query:
+        params = {"query": query, "language": language}
+        if year:
+            params["year"] = year
+        data = _get("search/movie", params)
+    else:
+        params = {"language": language}
+        if year:
+            params["year"] = year
+        data = _get("discover/movie", params)
     return data.get("results", [])
 
 
 def get_movie_details(movie_id: int) -> Dict[str, Any]:
     return _get(f"movie/{movie_id}")
+
+
+def get_movie_cast(movie_id: int) -> List[Dict[str, Any]]:
+    data = _get(f"movie/{movie_id}/credits")
+    return data.get("cast", [])[:10]

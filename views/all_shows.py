@@ -18,12 +18,24 @@ def details(movie_id):
 def show():
     st.title("🔍 All Shows")
 
-    genre, year, language = get_filter_inputs()
+    # Search field
+    search_query = st.text_input(
+        "🔍 Search movies by title...", placeholder="Enter movie title"
+    )
 
-    movies = search_movies(genre=genre, year=year, language=language)
+    # Filters (only show if no search query)
+    if not search_query:
+        genre, year, language = get_filter_inputs()
+        movies = search_movies(genre=genre, year=year, language=language)
+    else:
+        # Search by query
+        movies = search_movies(query=search_query)
 
     if not movies:
-        st.info("No movies found with selected filters.")
+        if search_query:
+            st.info(f"No movies found for '{search_query}'.")
+        else:
+            st.info("No movies found with selected filters.")
         return
 
     # Grid: 4 columns per row
