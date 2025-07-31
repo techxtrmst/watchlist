@@ -20,21 +20,21 @@ if st.session_state.selected_movie_id:
         st.session_state.selected_movie_id = None
         st.rerun()
 
-    from pages import show_details
+    from views import show_details
 
     show_details.show()
 else:
     page = st.sidebar.radio("Go to", ["🏠 Home", "🔍 All Shows", "✅ My Watchlist"])
 
     if page == "🏠 Home":
-        from pages import home
+        from views import home
 
         home.show()
     elif page == "🔍 All Shows":
-        from pages import all_shows
+        from views import all_shows
 
         all_shows.show()
     elif page == "✅ My Watchlist":
-        from pages import watchlist
+        from views import watchlist
 
         watchlist.show()

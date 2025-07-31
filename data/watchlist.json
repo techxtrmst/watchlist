@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": 1061474,
+    "title": "Superman",
+    "poster_path": "/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg",
+    "added_at": "2025-07-31",
+    "watched": false
+  },
+  {
+    "id": 552524,
+    "title": "Lilo & Stitch",
+    "poster_path": "/tUae3mefrDVTgm5mRzqWnZK6fOP.jpg",
+    "added_at": "2025-07-31",
+    "watched": true
+  }
+]
