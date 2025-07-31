@@ -21,5 +21,14 @@ def show():
 
     movies = search_movies(genre=genre, year=year, language=language)
 
-    for movie in movies:
-        show_movie_card(movie, on_add_to_watchlist=add, on_view_details=details)
+    if not movies:
+        st.info("No movies found with selected filters.")
+        return
+
+    # Grid: 4 columns per row
+    for i in range(0, len(movies), 4):
+        batch = movies[i : i + 4]
+        cols = st.columns(4)
+        for j, movie in enumerate(batch):
+            with cols[j]:
+                show_movie_card(movie, on_add_to_watchlist=add, on_view_details=details)
