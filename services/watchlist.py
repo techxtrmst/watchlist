@@ -1,16 +1,34 @@
+import os
 import json
+from datetime import date
 from typing import List, Dict, Any
 
 
 WATCHLIST_FILE = "data/watchlist.json"
 
 
+def _ensure_watchlist_file() -> None:
+    os.makedirs(os.path.dirname(WATCHLIST_FILE), exist_ok=True)
+    if not os.path.exists(WATCHLIST_FILE):
+        with open(WATCHLIST_FILE, "w") as f:
+            json.dump([], f)
+
+
 def load_watchlist() -> List[Dict[str, Any]]:
-    with open(WATCHLIST_FILE, "r") as f:
-        return json.load(f)
+    _ensure_watchlist_file()
+    try:
+        with open(WATCHLIST_FILE, "r") as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
+    except (json.JSONDecodeError, FileNotFoundError):
+        # If file is corrupted or empty, reset it
+        with open(WATCHLIST_FILE, "w") as f:
+            json.dump([], f)
+        return []
 
 
 def save_watchlist(watchlist: List[Dict[str, Any]]) -> None:
+    _ensure_watchlist_file()
     with open(WATCHLIST_FILE, "w") as f:
         json.dump(watchlist, f, indent=2)
 
@@ -18,13 +36,14 @@ def save_watchlist(watchlist: List[Dict[str, Any]]) -> None:
 def add_movie(movie: Dict[str, Any]) -> bool:
     watchlist = load_watchlist()
     if any(m["id"] == movie["id"] for m in watchlist):
-        return False  # Already exists
+        return False
+
     watchlist.append(
         {
             "id": movie["id"],
             "title": movie["title"],
             "poster_path": movie["poster_path"],
-            "added_at": str(__import__("datetime").date.today()),
+            "added_at": str(date.today()),
             "watched": False,
         }
     )
