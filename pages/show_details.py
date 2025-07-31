@@ -3,8 +3,7 @@ from services.tmdb import get_movie_details
 
 
 def show():
-    query_params = st.experimental_get_query_params()
-    movie_id = query_params.get("id", [None])[0]
+    movie_id = st.session_state.get("selected_movie_id")
 
     if not movie_id:
         st.error("No movie selected.")
@@ -18,7 +17,7 @@ def show():
 
     st.image(
         f"https://image.tmdb.org/t/p/w500{movie['backdrop_path']}",
-        use_column_width=True,
+        use_container_width=True,
     )
     st.title(movie["title"])
     st.write(movie["overview"])

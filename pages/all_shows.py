@@ -11,7 +11,8 @@ def add(movie):
 
 
 def details(movie_id):
-    st.experimental_set_query_params(page="show_details", id=movie_id)
+    st.session_state.selected_movie_id = movie_id
+    st.rerun()
 
 
 def show():
@@ -31,4 +32,9 @@ def show():
         cols = st.columns(4)
         for j, movie in enumerate(batch):
             with cols[j]:
-                show_movie_card(movie, on_add_to_watchlist=add, on_view_details=details)
+                show_movie_card(
+                    movie,
+                    on_add_to_watchlist=add,
+                    on_view_details=details,
+                    key_suffix=f"_all_{i}_{j}",
+                )

@@ -22,8 +22,8 @@ def show():
                 key=f"toggle_{item['id']}",
             ):
                 toggle_watched(item["id"])
-                st.experimental_rerun()
+                st.rerun()
         with col3:
             if st.button("🗑️ Remove", key=f"remove_{item['id']}"):
                 remove_movie(item["id"])
-                st.experimental_rerun()
+                st.rerun()
