@@ -7,3 +7,6 @@ __pycache__/
 
 # Secrets & environment variables
 .env
+
+# User specific data
+data/
