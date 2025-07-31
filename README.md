@@ -14,7 +14,7 @@ A clean and intuitive movie watchlist application built with Streamlit that help
 
 - **Frontend**: [Streamlit](https://streamlit.io/) - Interactive web app framework
 - **API**: [The Movie Database (TMDB) API](https://www.themoviedb.org/documentation/api) - Movie data and images
-- **Data Storage**: JSON file-based local storage
+- **Data Storage**: Sqlite based local database
 - **HTTP Client**: [Requests](https://requests.readthedocs.io/) - API communication
 - **Environment Management**: [python-dotenv](https://pypi.org/project/python-dotenv/) - Environment variable management
 

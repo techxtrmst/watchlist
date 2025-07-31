@@ -1,3 +1,4 @@
+aiosqlite==0.21.0
 altair==5.5.0
 attrs==25.3.0
 blinker==1.9.0
@@ -9,6 +10,7 @@ colorama==0.4.6
 gitdb==4.0.12
 GitPython==3.1.45
 idna==3.10
+iso8601==2.1.0
 Jinja2==3.1.6
 jsonschema==4.25.0
 jsonschema-specifications==2025.4.1
@@ -21,6 +23,7 @@ pillow==11.3.0
 protobuf==6.31.1
 pyarrow==21.0.0
 pydeck==0.9.1
+pypika-tortoise==0.6.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 pytz==2025.2
@@ -33,6 +36,7 @@ streamlit==1.47.1
 tenacity==9.1.2
 toml==0.10.2
 tornado==6.5.1
+tortoise-orm==0.25.1
 typing_extensions==4.14.1
 tzdata==2025.2
 urllib3==2.5.0
